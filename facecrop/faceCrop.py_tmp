@@ -1,0 +1,40 @@
+# -*- coding: utf-8 -*-
+
+import cv2
+import dlib
+import numpy as np
+
+
+class FaceCrop:
+    def __init__(self):
+        self.detector = dlib.get_frontal_face_detector()
+        self.predictor = dlib.shape_predictor("/home/onepiece/GZX/photo2cartoon/photo2cartoon-master/facecrop/shape_predictor_68_face_landmarks.dat")
+
+    def get_points(self,image):
+        dets = self.detector(image, 1)
+        if not dets:
+            return None  # np.array([])
+
+        points = np.zeros((19, 2))
+        for k, d in enumerate(dets):
+            shape = self.predictor(image, d)
+            for i in range(17):
+                points[i] = (shape.part(i).x, shape.part(i).y)
+            points[17] = (shape.part(24).x, shape.part(24).y - 20)
+            points[18] = (shape.part(19).x, shape.part(19).y - 20)
+
+        return points
+
+    def get_mask(self,image, points):
+        # 和原始图像一样大小的0矩阵，作为mask
+        mask = np.zeros(image.shape[:2], np.uint8)
+        if points is None:  # points == np.array([]):
+            return mask
+
+        points = np.asarray(points, dtype=np.int32)
+        points = np.array([points])
+        # 在mask上将多边形区域填充为白色
+        cv2.polylines(mask, points, True, (0, 255, 255))  # 描绘边缘
+        cv2.fillPoly(mask, points, 255)  # 填充
+
+        return mask
