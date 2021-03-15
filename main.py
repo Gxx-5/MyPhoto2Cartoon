@@ -27,8 +27,8 @@ def Process(img):
     print("Photo2Cartoon Time Spent: ", end - start)
 
     if args.input == 0:
-        cv2.imshow("cartoon", cartoon)
-        # cv2.imshow("effect", PasteOnImg(img, cartoon, mask, rect))
+        # cv2.imshow("cartoon", cartoon)
+        cv2.imshow("effect", PasteOnImg(img, cartoon, mask, rect))
         cv2.waitKey(1)
     elif args.input == 1:
         cv2.imwrite(save_path, cartoon)

@@ -3,7 +3,6 @@ from .face_detect import FaceDetect
 from .face_seg import FaceSeg
 # from yoloFace.face_detector import face_detect
 from facecrop.faceCrop import FaceCrop
-from face_detector_track import Face_Detect_Track
 import numpy as np
 import cv2
 import time
@@ -15,7 +14,6 @@ class Preprocess:
         self.detect = FaceDetect(device, detector)  # device = 'cpu' or 'cuda', detector = 'dlib' or 'sfd'
         self.segment = FaceSeg()
         self.face_crop = FaceCrop()
-        self.face_detect = Face_Detect_Track()
         # 使用 Dlib 的正面人脸检测器 frontal_face_detector
         # self.detector = dlib.get_frontal_face_detector()
         # Dlib 的 68点模型 http://dlib.net/files/shape_predictor_68_face_landmarks.dat.bz2
@@ -35,17 +33,15 @@ class Preprocess:
         # mask = self.face_crop.get_mask(image, landmarks)
         # mask = mask[self.rect[0]:self.rect[1] + 1, self.rect[2]:self.rect[3] + 1]
 
-        # another function to get face and mask
-        face, self.rect = self.crop_optimize(image, landmarks)
-        # mask = self.segment.get_mask(face)  # segment mask
-
         # gzx
+        face, self.rect = self.crop_optimize(image, landmarks)
+        mask = self.segment.get_mask(face)  # segment mask
         # mask = self.crop_mask_stretch(image, landmarks, [face.shape[0], face.shape[1]])
 
         # xinbi
-        mask = self.face_crop.get_expand_mask(image)[:, :, np.newaxis]
+        # mask = self.face_crop.get_expand_mask(image)[:, :, np.newaxis]
         # cv2.imwrite("/home/onepiece/GZX/photo2cartoon/photo2cartoon-master/images/mask_before_crop.png", mask)
-        mask = self.crop_mask(mask, [face.shape[0], face.shape[1]])
+        # mask = self.crop_mask(mask, [face.shape[0], face.shape[1]])
 
         # cv2.imwrite("/home/onepiece/GZX/photo2cartoon/photo2cartoon-master/images/face.png", face)
         # cv2.imwrite("/home/onepiece/GZX/photo2cartoon/photo2cartoon-master/images/mask_after_crop.png", mask)
