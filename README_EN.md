@@ -4,7 +4,7 @@
 
 # Photo to Cartoon
 
-[中文版](README.md) | English Version
+[中文版](README_origin.md) | English Version
 
 [Minivision](https://www.minivision.cn/)'s photo-to-cartoon translation project is opened source in this repo, you can try our WeChat mini program "AI Cartoon Show" via scanning the QR code below.
 

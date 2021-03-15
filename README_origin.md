@@ -1,3 +1,25 @@
+<div align='center'>
+  <img src='./images/title.png'>
+</div>
+
+# 人像卡通化 (Photo to Cartoon)
+
+**中文版** | [English Version](README_EN.md)
+
+该项目为[小视科技](https://www.minivision.cn/)卡通肖像探索项目。您可使用微信扫描下方二维码或搜索“AI卡通秀”小程序体验卡通化效果。
+
+<div>
+  <img src='./images/QRcode.jpg' height='150px' width='150px'>
+</div>
+
+也可以前往我们的ai开放平台进行在线体验：[https://ai.minivision.cn/#/coreability/cartoon](https://ai.minivision.cn/#/coreability/cartoon)
+
+技术交流QQ群：937627932
+
+**Updates**
+- `2020.12.2`: 开源基于paddlepaddle的项目[photo2cartoon-paddle](https://github.com/minivision-ai/photo2cartoon-paddle)。
+- `2020.12.1`: 增加onnx测试模型, 详情请见 [test_onnx.py](./test_onnx.py)。
+
 ## 简介
 人像卡通风格渲染的目标是，在保持原图像ID信息和纹理细节的同时，将真实照片转换为卡通风格的非真实感图像。我们的思路是，从大量照片/卡通数据中习得照片到卡通画的映射。一般而言，基于成对数据的pix2pix方法能达到较好的图像转换效果，但本任务的输入输出轮廓并非一一对应，例如卡通风格的眼睛更大、下巴更瘦；且成对的数据绘制难度大、成本较高，因此我们采用unpaired image translation方法来实现。
 
@@ -21,13 +43,6 @@ Unpaired image translation流派最经典方法是CycleGAN，但原始CycleGAN�
 </div>
 
 ## Start
-### 算法流程：
-1.  检测人脸以及脸部轮廓的关键点位置
-2.  根据轮廓关键点计算得到人脸位置
-3.  将脸部边界框按固定的比例扩张并裁剪出人脸区域
-4.  使用人像分割模型将背景置白
-5.  使用动漫化模型将白色背景的人脸图像进行动漫化处理
-6.  用动漫脸替换人脸进行可视化展示
 
 ### 安装依赖库
 项目所需的主要依赖库如下：
@@ -40,7 +55,7 @@ Unpaired image translation流派最经典方法是CycleGAN，但原始CycleGAN�
 
 ### Clone：
 ```
-git clone https://github.com/Gxx-5/MyPhoto2Cartoon.git
+git clone https://github.com/minivision-ai/photo2cartoon.git
 cd ./photo2cartoon
 ```
 
@@ -53,19 +68,11 @@ cd ./photo2cartoon
 4. 卡通画开源数据：`cartoon_data`，包含`trainB`和`testB`。
 5. 人像卡通化onnx模型：photo2cartoon_weights.onnx [谷歌网盘](https://drive.google.com/file/d/1PhwKDUhiq8p-UqrfHCqj257QnqBWD523/view?usp=sharing)，存放在`models`路径下。
 6. dlib人脸识别模型：shape_predictor_68_face_landmarks.dat  [dlib官方下载地址](http://dlib.net/files/)，下载文件：shape_predictor_68_face_landmarks.dat.bz2，存放在`facecrop`路径下。
-
 ### 测试
 
-输入单张照片并保存：
 ```
 python main.py --source 0 --photo_path ./images/photo_test.jpg --save_path ./images/cartoon_result.png
-```
-启动相机作为输入源并可视化：
-```
 python main.py --source 1
-```
-视频流作为输入源并可视化：
-```
 python main.py --source 2 --video_path ./images/video_test.mp4
 ```
 
