@@ -5,4 +5,3 @@ models/photo2cartoon_weights.onnx
 models/model_mobilefacenet.pth
 utils/seg_model_384.pb
 *.pyc
-images/
