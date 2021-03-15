@@ -67,8 +67,15 @@ cd ./photo2cartoon
 3. 人脸识别预训练模型：model_mobilefacenet.pth，存放在`models`路径下。（From: [InsightFace_Pytorch](https://github.com/TreB1eN/InsightFace_Pytorch)）
 4. 卡通画开源数据：`cartoon_data`，包含`trainB`和`testB`。
 5. 人像卡通化onnx模型：photo2cartoon_weights.onnx [谷歌网盘](https://drive.google.com/file/d/1PhwKDUhiq8p-UqrfHCqj257QnqBWD523/view?usp=sharing)，存放在`models`路径下。
-6.dlib人脸识别模型：shape_predictor_68_face_landmarks.dat  [dlib官方下载地址](http://dlib.net/files/)，下载文件：shape_predictor_68_face_landmarks.dat.bz2，存放在`facecrop`路径下。
+6. dlib人脸识别模型：shape_predictor_68_face_landmarks.dat  [dlib官方下载地址](http://dlib.net/files/)，下载文件：shape_predictor_68_face_landmarks.dat.bz2，存放在`facecrop`路径下。
 ### 测试
+
+```
+python main.py --source 0 --photo_path ./images/photo_test.jpg --save_path ./images/cartoon_result.png
+python main.py --source 1
+python main.py --source 2 --video_path ./images/video_test.mp4
+```
+
 将一张测试照片（亚洲年轻女性）转换为卡通风格：
 ```
 python test.py --photo_path ./images/photo_test.jpg --save_path ./images/cartoon_result.png

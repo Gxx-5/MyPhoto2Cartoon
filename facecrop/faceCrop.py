@@ -33,7 +33,7 @@ class FaceCrop:
         w = image.shape[1]
         dets = self.detector(image, 1)
         if not dets:
-            return None, None
+            return None
 
         points = np.zeros((19, 2))
         self.headmarks = np.zeros((21, 2))
