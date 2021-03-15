@@ -15,7 +15,7 @@ Unpaired image translation流派最经典方法是CycleGAN，但原始CycleGAN�
   <img src='./images/results.png'>
 </div>
 <div align='center'>
-  <img src='./images/cartoon_result.png' width="500" height="313">
+  <img src='./images/cartoon_result.png'  style="zoom:50%" >
   <img src='./images/cartoon_result2.png'>
   <img src='./images/photo_result.png'>
 </div>
