@@ -5,11 +5,11 @@ import dlib
 import numpy as np
 import math
 
+
 class FaceCrop:
     def __init__(self):
         self.detector = dlib.get_frontal_face_detector()
-        self.predictor = dlib.shape_predictor(
-            "/home/onepiece/GZX/photo2cartoon/photo2cartoon/facecrop/shape_predictor_68_face_landmarks.dat")
+        self.predictor = dlib.shape_predictor("../shape_predictor_68_face_landmarks.dat")
         self.headmarks = np.zeros((21, 2))
         self.shouldermarks = np.zeros((8, 2))
 
