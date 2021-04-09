@@ -41,7 +41,7 @@ Unpaired image translation流派最经典方法是CycleGAN，但原始CycleGAN�
 ### Clone：
 ```
 git clone https://github.com/Gxx-5/MyPhoto2Cartoon.git
-cd ./photo2cartoon
+cd MyPhoto2Cartoon
 ```
 
 ### 下载资源
